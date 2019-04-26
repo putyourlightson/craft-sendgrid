@@ -1,0 +1,37 @@
+{
+    "name": "putyourlightson/craft-sendgrid",
+    "description": "SendGrid mailer adapter for Craft CMS.",
+    "version": "1.0.0",
+    "type": "craft-plugin",
+    "homepage": "https://github.com/putyourlightson/craft-sendgrid",
+    "license": "MIT",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "email"
+    ],
+    "require": {
+        "craftcms/cms": "^3.1.0",
+        "sendgrid/sendgrid": "^7.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "putyourlightson\\sendgrid\\": "src/"
+        }
+    },
+    "support": {
+        "docs": "https://github.com/putyourlightson/craft-sendgrid",
+        "source": "https://github.com/putyourlightson/craft-sendgrid",
+        "issues": "https://github.com/putyourlightson/craft-sendgrid/issues"
+    },
+    "extra": {
+        "name": "SendGrid",
+        "handle": "sendgrid",
+        "developer": "PutYourLightsOn",
+        "developerUrl": "https://putyourlightson.com/",
+        "schemaVersion": "1.0.0",
+        "changelogUrl": "https://raw.githubusercontent.com/putyourlightson/craft-sendgrid/v1/CHANGELOG.md",
+        "class": "putyourlightson\\sendgrid\\Sendgrid"
+    }
+}

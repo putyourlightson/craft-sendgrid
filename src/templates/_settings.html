@@ -1,0 +1,12 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.autosuggestField({
+    label: "API Key"|t('sendgrid'),
+    id: 'apiKey',
+    name: 'apiKey',
+    instructions: "Enter an API key (which you can get from your SendGrid account)."|t('sendgrid'),
+    suggestions: craft.cp.getEnvSuggestions(),
+    value: adapter.apiKey,
+    errors: adapter.getErrors('apiKey'),
+    required: true,
+}) }}
