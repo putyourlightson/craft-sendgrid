@@ -44,7 +44,7 @@ class SendgridAdapter extends BaseTransportAdapter
     public function attributeLabels(): array
     {
         return [
-            'apiKey' => Craft::t('amazon-ses', 'API Key'),
+            'apiKey' => Craft::t('sendgrid', 'API Key'),
         ];
     }
 
