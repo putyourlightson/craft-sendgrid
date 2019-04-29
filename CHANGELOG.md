@@ -1,4 +1,4 @@
 # SendGrid Changelog
 
-## 1.0.0 - 2019-04-26
+## 1.0.0 - 2019-04-29
 - Initial release.

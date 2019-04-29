@@ -12,11 +12,13 @@ Craft CMS 3.1.0 or later.
 
 To install the plugin, search for “SendGrid” in the Craft Plugin Store, or install manually using composer.
 
-        composer require putyourlightson/craft-sendgrid
+```
+composer require putyourlightson/craft-sendgrid
+```
 
 ## Usage
 
-Once installed, go to Settings → Email, and change the “Transport Type” setting to “SendGrid”. Enter an API key (which you can get from your [SendGrid](https://app.sendgrid.com/) account).
+Once installed, go to Settings → Email, and change the “Transport Type” setting to “SendGrid”. Enter an API key (which you can generate in your [SendGrid account](https://app.sendgrid.com/settings/api_keys)).
 
 ## License
 

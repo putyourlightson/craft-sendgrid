@@ -6,9 +6,9 @@
 namespace putyourlightson\sendgrid\mail;
 
 use Swift_Events_EventListener;
-use Swift_Mime_SimpleMessage;
+use Swift_Transport;
 
-abstract class Transport implements \Swift_Transport
+abstract class Transport implements Swift_Transport
 {
     /**
      * @inheritdoc
