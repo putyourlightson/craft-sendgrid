@@ -5,8 +5,10 @@
 
 namespace putyourlightson\sendgrid\mail;
 
+use Craft;
 use Exception;
 use SendGrid;
+use SendGrid\Mail\EmailAddress;
 use SendGrid\Mail\Mail;
 use SendGrid\Mail\TypeException;
 use Swift_Mime_SimpleMessage;
@@ -48,9 +50,11 @@ class SendgridTransport extends Transport
     public function send(Swift_Mime_SimpleMessage $message, &$failedRecipients = null): int
     {
         try {
-            $email = $this->_createMessage($message);
+            $email = $this->_getEmail($message);
         }
         catch (TypeException $e) {
+            Craft::warning($e->getMessage(), 'sendgrid');
+
             return 0;
         }
 
@@ -58,10 +62,14 @@ class SendgridTransport extends Transport
             $response = $this->_client->send($email);
 
             if ($response->statusCode() != self::SUCCESS_STATUS_CODE) {
+                Craft::warning($response->body(), 'sendgrid');
+
                 return 0;
             }
         }
         catch (Exception $e) {
+            Craft::warning($e->getMessage(), 'sendgrid');
+
             return 0;
         }
 
@@ -77,14 +85,18 @@ class SendgridTransport extends Transport
      * @return Mail
      * @throws TypeException
      */
-    private function _createMessage(Swift_Mime_SimpleMessage $message): Mail
+    private function _getEmail(Swift_Mime_SimpleMessage $message): Mail
     {
-        $fromEmail = key($message->getFrom());
-        $fromName = $message->getFrom()[$fromEmail];
+        $from = $this->_getEmailAddress($message->getFrom());
+        $replyTo = $this->_getEmailAddress($message->getReplyTo());
 
         $email = new Mail();
-        $email->setFrom($fromEmail, $fromName);
-        $email->setReplyTo($message->getReplyTo());
+        $email->setFrom($from->getEmail(), $from->getName());
+
+        if ($replyTo !== null) {
+            $email->setReplyTo($replyTo->getEmail(), $replyTo->getName());
+        }
+
         $email->setSubject($message->getSubject());
         $email->addTos($message->getTo() ?? []);
         $email->addCcs($message->getCc() ?? []);
@@ -102,4 +114,25 @@ class SendgridTransport extends Transport
         return $email;
     }
 
+    /**
+     * @param mixed $values
+     *
+     * @return EmailAddress|null
+     */
+    private function _getEmailAddress($value)
+    {
+        if ($value === null) {
+            return null;
+        }
+
+        if (is_array($value)) {
+            $fromEmail = key($value);
+            $emailAddress = new EmailAddress($fromEmail, $value[$fromEmail]);
+        }
+        else {
+            $emailAddress = new EmailAddress($value);
+        }
+
+        return $emailAddress;
+    }
 }
