@@ -111,6 +111,12 @@ class SendgridTransport extends Transport
             }
         }
 
+        // If email content is empty then set it to the message body
+        // (resolves https://github.com/putyourlightson/craft-sendgrid/issues/2)
+        if (empty($email->getContents())) {
+            $email->addContent($message->getContentType(), $message->getBody());
+        }
+
         return $email;
     }
 
