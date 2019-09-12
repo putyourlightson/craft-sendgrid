@@ -4,6 +4,14 @@
 
 The SendGrid plugin provides a [SendGrid](https://sendgrid.com/) mailer adapter for [Craft CMS](https://craftcms.com/).
 
+## Documentation
+
+Learn more and read the documentation at [putyourlightson.com/plugins/sendgrid »](https://putyourlightson.com/plugins/sendgrid)
+
+## License
+
+This plugin is licensed for free under the MIT License.
+
 ## Requirements
 
 Craft CMS 3.1.0 or later.
@@ -15,13 +23,5 @@ To install the plugin, search for “SendGrid” in the Craft Plugin Store, or i
 ```
 composer require putyourlightson/craft-sendgrid
 ```
-
-## Usage
-
-Once installed, go to Settings → Email, and change the “Transport Type” setting to “SendGrid”. Enter an API key (which you can generate in your [SendGrid account](https://app.sendgrid.com/settings/api_keys)).
-
-## License
-
-This plugin is licensed for free under the MIT License.
 
 <small>Created by [PutYourLightsOn](https://putyourlightson.com/).</small>
