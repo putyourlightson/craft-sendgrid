@@ -21,7 +21,7 @@
         }
     },
     "support": {
-        "docs": "https://github.com/putyourlightson/craft-sendgrid",
+        "docs": "https://putyourlightson.com/plugins/sendgrid",
         "source": "https://github.com/putyourlightson/craft-sendgrid",
         "issues": "https://github.com/putyourlightson/craft-sendgrid/issues"
     },
