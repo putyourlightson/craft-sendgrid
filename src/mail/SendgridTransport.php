@@ -117,7 +117,8 @@ class SendgridTransport extends Transport
                 $attachment->setContentId($mimeEntity->getId());
 
                 $email->addAttachment($attachment);
-            } elseif (in_array($mimeEntity->getBodyContentType(), $contentTypes)) {
+            }
+            elseif (in_array($mimeEntity->getBodyContentType(), $contentTypes)) {
                 $email->addContent($mimeEntity->getBodyContentType(), $mimeEntity->getBody());
             }
         }

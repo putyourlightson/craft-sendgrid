@@ -1,5 +1,9 @@
 # SendGrid Changelog
 
+## 1.2.0 - 2019-10-15
+### Added
+- Added support for attachments.
+
 ## 1.1.1 - 2019-08-16
 ### Fixed
 - Fixed issue with Craft Commerce email notifications ([#2](https://github.com/putyourlightson/craft-sendgrid/issues/2)).
