@@ -8,9 +8,11 @@ namespace putyourlightson\sendgrid\mail;
 use Craft;
 use Exception;
 use SendGrid;
+use SendGrid\Mail\Attachment;
 use SendGrid\Mail\EmailAddress;
 use SendGrid\Mail\Mail;
 use SendGrid\Mail\TypeException;
+use Swift_Mime_Attachment;
 use Swift_Mime_SimpleMessage;
 
 class SendgridTransport extends Transport
@@ -106,7 +108,16 @@ class SendgridTransport extends Transport
         $contentTypes = ['text/plain', 'text/html'];
 
         foreach ($message->getChildren() as $mimeEntity) {
-            if (in_array($mimeEntity->getBodyContentType(), $contentTypes)) {
+            if ($mimeEntity instanceof Swift_Mime_Attachment) {
+                $attachment = new Attachment();
+                $attachment->setContent(base64_encode($mimeEntity->getBody()));
+                $attachment->setType($mimeEntity->getContentType());
+                $attachment->setFilename($mimeEntity->getFilename());
+                $attachment->setDisposition($mimeEntity->getDisposition());
+                $attachment->setContentId($mimeEntity->getId());
+
+                $email->addAttachment($attachment);
+            } elseif (in_array($mimeEntity->getBodyContentType(), $contentTypes)) {
                 $email->addContent($mimeEntity->getBodyContentType(), $mimeEntity->getBody());
             }
         }
