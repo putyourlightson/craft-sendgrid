@@ -35,6 +35,11 @@ class SendgridAdapter extends BaseTransportAdapter
      */
     public $apiKey;
 
+    /**
+     * @var string The email category
+     */
+    public $emailCategory;
+
     // Public Methods
     // =========================================================================
 
@@ -45,6 +50,7 @@ class SendgridAdapter extends BaseTransportAdapter
     {
         return [
             'apiKey' => Craft::t('sendgrid', 'API Key'),
+            'emailCategory' => Craft::t('sendgrid','Email category')
         ];
     }
 
@@ -56,7 +62,7 @@ class SendgridAdapter extends BaseTransportAdapter
         return [
             'parser' => [
                 'class' => EnvAttributeParserBehavior::class,
-                'attributes' => ['apiKey'],
+                'attributes' => ['apiKey','emailCategory'],
             ],
         ];
     }
@@ -82,6 +88,21 @@ class SendgridAdapter extends BaseTransportAdapter
     }
 
     /**
+     * @return array
+     */
+    public function getEmailCategories(){
+
+        $categories = Craft::parseEnv($this->emailCategory);
+
+        if($categories){
+            return explode(',',str_replace(' ','',$categories));
+        }
+
+        return null;
+
+    }
+
+    /**
      * @inheritdoc
      */
     public function defineTransport()
@@ -89,6 +110,6 @@ class SendgridAdapter extends BaseTransportAdapter
         // Create new client
         $client = new SendGrid(Craft::parseEnv($this->apiKey));
 
-        return new SendgridTransport($client);
+        return new SendgridTransport($client, $this->getEmailCategories());
     }
 }
