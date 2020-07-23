@@ -100,9 +100,18 @@ class SendgridTransport extends Transport
         }
 
         $email->setSubject($message->getSubject());
-        $email->addTos($message->getTo() ?? []);
-        $email->addCcs($message->getCc() ?? []);
-        $email->addBccs($message->getBcc() ?? []);
+
+        if (!empty($message->getTo())) {
+            $email->addTos($message->getTo());
+        }
+
+        if (!empty($message->getCc())) {
+            $email->addCcs($message->getCc());
+        }
+
+        if (!empty($message->getBcc())) {
+            $email->addBcs($message->getBcc());
+        }
 
         // Add content based on message's content types
         $contentTypes = ['text/plain', 'text/html'];

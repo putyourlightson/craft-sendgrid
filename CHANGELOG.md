@@ -1,5 +1,9 @@
 # SendGrid Changelog
 
+## 1.2.1 - 2020-07-23
+### Fixed
+- Fixed a bug that could throw errors when using recent versions of the SendGrid PHP library.
+
 ## 1.2.0 - 2019-10-15
 ### Added
 - Added support for attachments.
