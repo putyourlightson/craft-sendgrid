@@ -11,3 +11,15 @@
     errors: adapter.getErrors('apiKey'),
     required: true,
 }) }}
+
+{{ forms.autosuggestField({
+    label: "Email category"|t('sendgrid'),
+    id: 'emailCategory',
+    name: 'emailCategory',
+    instructions: 'Associates the category of the email this should be logged as. Categories must be separated by commas (Example: category1,category2).'|t('sendgrid'),
+    suggestEnvVars: true,
+    suggestions: craft.cp.getEnvSuggestions(),
+    value: adapter.emailCategory,
+    errors: adapter.getErrors('emailCategory'),
+    required: false,
+}) }}

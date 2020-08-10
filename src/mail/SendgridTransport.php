@@ -33,17 +33,25 @@ class SendgridTransport extends Transport
      */
     private $_client;
 
+    /**
+     * @var SendGrid
+     */
+    private $_categories;
+
     // Public Methods
     // =========================================================================
 
     /**
      * Constructor
      *
+     * SendgridTransport constructor.
      * @param SendGrid $client
+     * @param array|null $_categories
      */
-    public function __construct(SendGrid $client)
+    public function __construct(SendGrid $client, $_categories = null)
     {
         $this->_client = $client;
+        $this->_categories = $_categories;
     }
 
     /**
@@ -95,6 +103,10 @@ class SendgridTransport extends Transport
         $email = new Mail();
         $email->setFrom($from->getEmail(), $from->getName());
 
+        if($this->_categories){
+            $email->addCategories($this->_categories);
+        }
+        
         if ($replyTo !== null) {
             $email->setReplyTo($replyTo->getEmail(), $replyTo->getName());
         }
