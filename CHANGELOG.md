@@ -1,5 +1,9 @@
 # SendGrid Changelog
 
+## 1.2.2 - 2020-08-10
+### Fixed
+- Fixed error when adding emails in BCC ([#9](https://github.com/putyourlightson/craft-sendgrid/issues/9)).
+
 ## 1.2.1 - 2020-07-23
 ### Fixed
 - Fixed a bug that could throw errors when using recent versions of the SendGrid PHP library.
