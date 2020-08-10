@@ -110,7 +110,7 @@ class SendgridTransport extends Transport
         }
 
         if (!empty($message->getBcc())) {
-            $email->addBcs($message->getBcc());
+            $email->addBccs($message->getBcc());
         }
 
         // Add content based on message's content types
