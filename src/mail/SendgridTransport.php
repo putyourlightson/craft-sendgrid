@@ -83,7 +83,6 @@ class SendgridTransport extends Transport
 
     /**
      * @param Swift_Mime_SimpleMessage $message
-     *
      * @return Mail
      * @throws TypeException
      */
@@ -135,15 +134,14 @@ class SendgridTransport extends Transport
         // If email content is empty then set it to the message body
         // (resolves https://github.com/putyourlightson/craft-sendgrid/issues/2)
         if (empty($email->getContents())) {
-            $email->addContent($message->getContentType(), $message->getBody());
+            $email->addContent($message->getBodyContentType(), $message->getBody());
         }
 
         return $email;
     }
 
     /**
-     * @param mixed $values
-     *
+     * @param mixed $value
      * @return EmailAddress|null
      */
     private function _getEmailAddress($value)

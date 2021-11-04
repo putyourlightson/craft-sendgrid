@@ -1,8 +1,12 @@
 # SendGrid Changelog
 
+## 1.2.3 - 2021-11-04
+### Fixed
+- Fixed the content type of the body when an attachment is sent ([#12](https://github.com/putyourlightson/craft-sendgrid/issues/12)).
+
 ## 1.2.2 - 2020-08-10
 ### Fixed
-- Fixed error when adding emails in BCC ([#9](https://github.com/putyourlightson/craft-sendgrid/issues/9)).
+- Fixed an error when adding emails in BCC ([#9](https://github.com/putyourlightson/craft-sendgrid/issues/9)).
 
 ## 1.2.1 - 2020-07-23
 ### Fixed
