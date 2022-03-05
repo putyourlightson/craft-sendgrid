@@ -17,10 +17,7 @@ class Sendgrid extends Plugin
     /**
      * @var Sendgrid
      */
-    public static $plugin;
-
-    // Public Methods
-    // =========================================================================
+    public static Sendgrid $plugin;
 
     /**
      * @inheritdoc

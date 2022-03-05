@@ -1,5 +1,9 @@
 # SendGrid Changelog
 
+## 2.0.0 - Unreleased
+### Added
+- Added compatibility with Craft 4.
+
 ## 1.2.3 - 2021-11-04
 ### Fixed
 - Fixed the content type of the body when an attachment is sent ([#12](https://github.com/putyourlightson/craft-sendgrid/issues/12)).

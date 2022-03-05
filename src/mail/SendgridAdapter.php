@@ -7,18 +7,16 @@ namespace putyourlightson\sendgrid\mail;
 
 use Craft;
 use craft\behaviors\EnvAttributeParserBehavior;
+use craft\helpers\App;
 use craft\mail\transportadapters\BaseTransportAdapter;
-use SendGrid;
+use Symfony\Component\Mailer\Bridge\Sendgrid\Transport\SendgridApiTransport;
+use Symfony\Component\Mailer\Transport\AbstractTransport;
 
 /**
- *
- * @property mixed $settingsHtml
+ * @property-read null|string $settingsHtml
  */
 class SendgridAdapter extends BaseTransportAdapter
 {
-    // Static
-    // =========================================================================
-
     /**
      * @inheritdoc
      */
@@ -27,16 +25,10 @@ class SendgridAdapter extends BaseTransportAdapter
         return 'SendGrid';
     }
 
-    // Properties
-    // =========================================================================
-
     /**
      * @var string The API key
      */
-    public $apiKey;
-
-    // Public Methods
-    // =========================================================================
+    public string $apiKey = '';
 
     /**
      * @inheritdoc
@@ -51,20 +43,21 @@ class SendgridAdapter extends BaseTransportAdapter
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
-        return [
-            'parser' => [
-                'class' => EnvAttributeParserBehavior::class,
-                'attributes' => ['apiKey'],
-            ],
+        $behaviors = parent::behaviors();
+        $behaviors['parser'] = [
+            'class' => EnvAttributeParserBehavior::class,
+            'attributes' => ['apiKey'],
         ];
+
+        return $behaviors;
     }
 
     /**
      * @inheritdoc
      */
-    public function rules(): array
+    public function defineRules(): array
     {
         return [
             [['apiKey'], 'required'],
@@ -74,7 +67,7 @@ class SendgridAdapter extends BaseTransportAdapter
     /**
      * @inheritdoc
      */
-    public function getSettingsHtml()
+    public function getSettingsHtml(): ?string
     {
         return Craft::$app->getView()->renderTemplate('sendgrid/_settings', [
             'adapter' => $this,
@@ -84,11 +77,10 @@ class SendgridAdapter extends BaseTransportAdapter
     /**
      * @inheritdoc
      */
-    public function defineTransport()
+    public function defineTransport(): array|AbstractTransport
     {
-        // Create new client
-        $client = new SendGrid(Craft::parseEnv($this->apiKey));
+        $apiKey = App::parseEnv($this->apiKey);
 
-        return new SendgridTransport($client);
+        return new SendgridApiTransport($apiKey);
     }
 }
