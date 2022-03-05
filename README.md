@@ -1,6 +1,6 @@
 <p align="center"><img width="200" src="src/icon.svg"></p>
 
-# SendGrid Plugin for Craft CMS 3
+# SendGrid Plugin for Craft CMS
 
 The SendGrid plugin provides a [SendGrid](https://sendgrid.com/) mailer adapter for [Craft CMS](https://craftcms.com/).
 
@@ -20,7 +20,7 @@ Craft CMS 3.1.0 or later.
 
 To install the plugin, search for “SendGrid” in the Craft Plugin Store, or install manually using composer.
 
-```
+```shell
 composer require putyourlightson/craft-sendgrid
 ```
 
