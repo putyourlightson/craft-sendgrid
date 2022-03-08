@@ -33,6 +33,11 @@ class SendgridTransport extends Transport
      */
     private $_client;
 
+    /**
+     * @var string[]
+     */
+    private $_categories;
+
     // Public Methods
     // =========================================================================
 
@@ -40,10 +45,12 @@ class SendgridTransport extends Transport
      * Constructor
      *
      * @param SendGrid $client
+     * @param array $categories
      */
-    public function __construct(SendGrid $client)
+    public function __construct(SendGrid $client, array $categories = [])
     {
         $this->_client = $client;
+        $this->_categories = $categories;
     }
 
     /**
@@ -57,8 +64,11 @@ class SendgridTransport extends Transport
         catch (TypeException $e) {
             Craft::warning($e->getMessage(), 'sendgrid');
 
+        Craft::dd($e->getMessage());
             return 0;
         }
+
+        $email->addCategories($this->_categories);
 
         try {
             $response = $this->_client->send($email);

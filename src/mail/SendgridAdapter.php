@@ -35,6 +35,11 @@ class SendgridAdapter extends BaseTransportAdapter
      */
     public $apiKey;
 
+    /**
+     * @var string[] The email categories
+     */
+    public $categories;
+
     // Public Methods
     // =========================================================================
 
@@ -89,6 +94,11 @@ class SendgridAdapter extends BaseTransportAdapter
         // Create new client
         $client = new SendGrid(Craft::parseEnv($this->apiKey));
 
-        return new SendgridTransport($client);
+        // Flatten categories array
+        $categories = array_map(function ($value) {
+            return $value[0];
+        }, $this->categories);
+
+        return new SendgridTransport($client, $categories);
     }
 }
