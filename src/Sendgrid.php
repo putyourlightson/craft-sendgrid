@@ -5,11 +5,10 @@
 
 namespace putyourlightson\sendgrid;
 
-use putyourlightson\sendgrid\mail\SendgridAdapter;
-
 use craft\base\Plugin;
 use craft\events\RegisterComponentTypesEvent;
 use craft\helpers\MailerHelper;
+use putyourlightson\sendgrid\mail\SendgridAdapter;
 use yii\base\Event;
 
 class Sendgrid extends Plugin
@@ -25,7 +24,6 @@ class Sendgrid extends Plugin
     public function init()
     {
         parent::init();
-
         self::$plugin = $this;
 
         Event::on(MailerHelper::class, MailerHelper::EVENT_REGISTER_MAILER_TRANSPORT_TYPES,

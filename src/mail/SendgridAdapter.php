@@ -50,29 +50,6 @@ class SendgridAdapter extends BaseTransportAdapter
     /**
      * @inheritdoc
      */
-    public function defineBehaviors(): array
-    {
-        return [
-            'parser' => [
-                'class' => EnvAttributeParserBehavior::class,
-                'attributes' => ['apiKey'],
-            ],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function defineRules(): array
-    {
-        return [
-            [['apiKey'], 'required'],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getSettingsHtml(): ?string
     {
         return Craft::$app->getView()->renderTemplate('sendgrid/_settings', [
@@ -97,5 +74,28 @@ class SendgridAdapter extends BaseTransportAdapter
         ]);
 
         return new SendgridApiTransport($apiKey, $client);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function defineBehaviors(): array
+    {
+        return [
+            'parser' => [
+                'class' => EnvAttributeParserBehavior::class,
+                'attributes' => ['apiKey'],
+            ],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function defineRules(): array
+    {
+        return [
+            [['apiKey'], 'required'],
+        ];
     }
 }

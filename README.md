@@ -14,7 +14,7 @@ This plugin is licensed for free under the MIT License.
 
 ## Requirements
 
-Craft CMS 3.1.0 or later.
+This plugin requires [Craft CMS](https://craftcms.com/) 3.1.0 or later, or 4.0.0 or later.
 
 ## Installation
 
@@ -24,4 +24,6 @@ To install the plugin, search for “SendGrid” in the Craft Plugin Store, or i
 composer require putyourlightson/craft-sendgrid
 ```
 
-<small>Created by [PutYourLightsOn](https://putyourlightson.com/).</small>
+---
+
+Created by [PutYourLightsOn](https://putyourlightson.com/).
