@@ -10,8 +10,6 @@ use craft\behaviors\EnvAttributeParserBehavior;
 use craft\helpers\App;
 use craft\mail\transportadapters\BaseTransportAdapter;
 use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Component\Mailer\Bridge\Sendgrid\Transport\SendgridApiTransport;
-use Symfony\Component\Mailer\Header\TagHeader;
 use Symfony\Component\Mailer\Transport\AbstractTransport;
 
 /**
@@ -33,7 +31,7 @@ class SendgridAdapter extends BaseTransportAdapter
     public string $apiKey = '';
 
     /**
-     * @var string[] The email categories
+     * @var string[][] The email categories
      */
     public array $categories = [];
 
@@ -63,17 +61,14 @@ class SendgridAdapter extends BaseTransportAdapter
     public function defineTransport(): array|AbstractTransport
     {
         $apiKey = App::parseEnv($this->apiKey);
-        $headers = [];
+        $client = HttpClient::create();
 
-        foreach ($this->categories as $category) {
-            $headers[] = new TagHeader($category);
-        }
+        // Flatten categories array
+        $categories = array_map(function($value) {
+            return $value[0];
+        }, $this->categories);
 
-        $client = HttpClient::create([
-            'headers' => $headers,
-        ]);
-
-        return new SendgridApiTransport($apiKey, $client);
+        return new SendgridTransport($apiKey, $client, $categories);
     }
 
     /**

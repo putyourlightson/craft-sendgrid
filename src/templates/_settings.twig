@@ -11,3 +11,22 @@
     errors: adapter.getErrors('apiKey'),
     required: true,
 }) }}
+
+{{ forms.editableTableField({
+    label: "Categories"|t('sendgrid'),
+    id: 'categories',
+    name: 'categories',
+    instructions: 'Add one or more <a href="https://docs.sendgrid.com/glossary/categories" target="_blank">categories</a> to emails.'|t('sendgrid'),
+    cols: [
+        {
+            type: 'singleline',
+            heading: 'Category Name'|t('sendgrid'),
+        },
+    ],
+    rows: adapter.categories,
+    maxRows: 10,
+    addRowLabel: "Add a category"|t('sendgrid'),
+    allowAdd: true,
+    allowDelete: true,
+    allowReorder: true,
+}) }}

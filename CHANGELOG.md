@@ -1,8 +1,16 @@
 # Release Notes for SendGrid
 
+## 2.0.1 - 2022-05-06
+### Fixed
+- Fixed sending using email categories.
+
 ## 2.0.0 - 2022-05-04
 ### Added
 - Added compatibility with Craft 4.
+
+## 1.3.1 - 2022-05-06
+### Fixed
+- Fixed a bug that prevented sending when no categories were selected ([#13](https://github.com/putyourlightson/craft-sendgrid/issues/13)).
 
 ## 1.3.0 - 2022-05-04
 ### Added
