@@ -94,10 +94,14 @@ class SendgridAdapter extends BaseTransportAdapter
         // Create new client
         $client = new SendGrid(Craft::parseEnv($this->apiKey));
 
+        $categories = [];
+
         // Flatten categories array
-        $categories = array_map(function ($value) {
-            return $value[0];
-        }, $this->categories);
+        if (is_array($this->categories)) {
+            $categories = array_map(function ($value) {
+                return $value[0];
+            }, $this->categories);
+        }
 
         return new SendgridTransport($client, $categories);
     }
