@@ -1,3 +1,6 @@
+[![Stable Version](https://img.shields.io/packagist/v/putyourlightson/craft-sendgrid?label=stable)]((https://packagist.org/packages/putyourlightson/craft-sendgrid))
+[![Total Downloads](https://img.shields.io/packagist/dt/putyourlightson/craft-sendgrid)](https://packagist.org/packages/putyourlightson/craft-sendgrid)
+
 <p align="center"><img width="200" src="src/icon.svg"></p>
 
 # SendGrid Plugin for Craft CMS
