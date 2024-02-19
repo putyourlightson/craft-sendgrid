@@ -1,50 +1,7 @@
 # Release Notes for SendGrid
 
-## 2.0.1 - 2022-05-06
-### Fixed
-- Fixed sending using email categories.
+## 3.0.0-beta.1 - 2024-02-19
 
-## 2.0.0 - 2022-05-04
 ### Added
-- Added compatibility with Craft 4.
 
-## 1.3.1 - 2022-05-06
-### Fixed
-- Fixed a bug that prevented sending when no categories were selected ([#13](https://github.com/putyourlightson/craft-sendgrid/issues/13)).
-
-## 1.3.0 - 2022-05-04
-### Added
-- Added a categories setting that is applied to all sent emails ([#6](https://github.com/putyourlightson/craft-sendgrid/issues/6)).
-
-## 1.2.3 - 2021-11-04
-### Fixed
-- Fixed the content type of the body when an attachment is sent ([#12](https://github.com/putyourlightson/craft-sendgrid/issues/12)).
-
-## 1.2.2 - 2020-08-10
-### Fixed
-- Fixed an error when adding emails in BCC ([#9](https://github.com/putyourlightson/craft-sendgrid/issues/9)).
-
-## 1.2.1 - 2020-07-23
-### Fixed
-- Fixed a bug that could throw errors when using recent versions of the SendGrid PHP library.
-
-## 1.2.0 - 2019-10-15
-### Added
-- Added support for attachments.
-
-## 1.1.1 - 2019-08-16
-### Fixed
-- Fixed issue with Craft Commerce email notifications ([#2](https://github.com/putyourlightson/craft-sendgrid/issues/2)).
-
-## 1.1.0 - 2019-05-09
-> {note} This version fixes an issue in which emails could silently fail with the Contact Form and other plugins. It is therefore highly recommended to update as soon as possible.
-
-### Fixed
-- Fixed bug in sending emails when reply to address was set.
-
-## 1.0.1 - 2019-04-29
-### Fixed
-- Fixed missing translation.
-
-## 1.0.0 - 2019-04-29
-- Initial release.
+- Added compatibility with Craft 5.0.0.

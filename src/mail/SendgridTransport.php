@@ -15,18 +15,18 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class SendgridTransport extends SendgridApiTransport
 {
-    private array $_categories;
+    private array $categories;
 
     public function __construct(string $key, HttpClientInterface $client = null, array $categories = [])
     {
-        $this->_categories = $categories;
+        $this->categories = $categories;
 
         parent::__construct($key, $client);
     }
 
     protected function doSendApi(SentMessage $sentMessage, Email $email, Envelope $envelope): ResponseInterface
     {
-        foreach ($this->_categories as $category) {
+        foreach ($this->categories as $category) {
             $email->getHeaders()->add(new TagHeader($category));
         }
 

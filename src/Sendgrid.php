@@ -21,12 +21,12 @@ class Sendgrid extends Plugin
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
         self::$plugin = $this;
 
-        Event::on(MailerHelper::class, MailerHelper::EVENT_REGISTER_MAILER_TRANSPORT_TYPES,
+        Event::on(MailerHelper::class, MailerHelper::EVENT_REGISTER_MAILER_TRANSPORTS,
             function(RegisterComponentTypesEvent $event) {
                 $event->types[] = SendgridAdapter::class;
             }
